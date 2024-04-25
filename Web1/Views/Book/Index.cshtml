@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<Web1.Models.Book>
+
+
+@{
+    var count = 1;
+}
+
+
+<table width="500">
+    <thead>
+        <tr>
+            <th>Sıra</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(count++)</td>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>
+                    <a asp-action="Detail" asp-controller="Book" asp-route-id="@item.Id"> Detay</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

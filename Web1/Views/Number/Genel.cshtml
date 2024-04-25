@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<int>
+
+
+@{
+}
+Sayilar : 
+<br />
+@for (int i = 0; i < Model.Count(); i++)
+{
+    <span style="margin:10px;"> @Model.ElementAt(i) </span>
+}
+<br />
+Büyük sayı : @((int)ViewData["buyuk"])<br />
+Küçük sayı : @((int)(ViewBag.kucuk))
+<br />
+
+
+<partial name="_Toplama" for="@Model"/>
+
+<br />
+
+<partial name="_Carpim" for="@Model" />

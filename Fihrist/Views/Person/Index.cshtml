@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<Fihrist.Models.Person>
+
+@{
+    var count = 1;
+}
+<div class="row">
+    <div class="col-12 justify-content-end">
+        <a href="@Url.Action("Create","Person")" class="btn btn-primary"> Yeni Kişi Ekle</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3>People</h3>
+    </div>
+    <div class="card-body">
+
+        @if (Model is not null && Model.Count() > 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sıra</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Lastname</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(count++)</td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Lastname</td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="Person" asp-route-id="@item.Id" style="margin:5px;">Düzenle</a>
+                                <a asp-action="Delete" asp-controller="Person" asp-route-id="@item.Id" style="margin:5px;">Sil</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-danger">Herhangi bir kişi bilgisi bulunamadı !</p>
+        }
+    </div>
+</div>
+

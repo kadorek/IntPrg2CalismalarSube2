@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Test1 sayfası";
+    Car c = ViewData["araba"] as Car;
+}
+<p> bu sayfa <span id="kobay"> Test1</span> görünümü</p>
+<script>    
+    $(document).ready(function () {
+        alert("merhaba");
+    })
+</script>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            alert("doğru yerde çağırdık");
+        })
+    </script>
+
+}
+@section Styles{
+    <style>
+        #kobay{
+            color:red;
+            font-size:30px;
+        }
+    </style>
+}
+
+<br />
+marka:@c.Brand <br />
+model:@c.Name <br />
+id: @c.Id
+
+
+
+
+
+
+
+
+
+
+
+
+
+

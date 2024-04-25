@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Person
+
+@{
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h3> @Model.Name @Model.Lastname isimli kişi silinecek , emin misiniz? </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form asp-action="Delete" asp-controller="Person" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Sil</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<int>
+
+@{
+     var carpim = 1;
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        carpim *= Model.ElementAt(i);
+    }
+}
+
+Veriler sayıların çarpımı : @carpim
