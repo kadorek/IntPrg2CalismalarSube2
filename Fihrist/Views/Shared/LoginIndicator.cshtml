@@ -1,0 +1,22 @@
+﻿@using System.Security.Claims
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <span>
+        @User.FindFirst(ClaimTypes.Name).Value <span> ( @User.FindFirst("OturumAçmaZamanı").Value ) </span>
+
+    </span><br />
+    <a href="@Url.Action("Logout","Account")">Logout</a>
+}
+else
+{
+    <a href="@Url.Action("Login","Account")"> Login</a>
+}
+
+
+
