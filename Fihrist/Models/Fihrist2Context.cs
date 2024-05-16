@@ -21,11 +21,15 @@ public partial class Fihrist2Context : DbContext
 
     public virtual DbSet<Person> People { get; set; }
 
+    public virtual DbSet<RolMember> RolMembers { get; set; }
+
+    public virtual DbSet<Role> Roles { get; set; }
+
     public virtual DbSet<Type> Types { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=.\\Data\\fihrist2.db;");
+        => optionsBuilder.UseSqlite("Data Source=.\\Data\\fihrist2.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +54,24 @@ public partial class Fihrist2Context : DbContext
         modelBuilder.Entity<Person>(entity =>
         {
             entity.ToTable("Person");
+        });
+
+        modelBuilder.Entity<RolMember>(entity =>
+        {
+            entity.ToTable("RolMember");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.RolMembers)
+                .HasForeignKey(d => d.MemberId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.Role).WithMany(p => p.RolMembers)
+                .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.ToTable("Role");
         });
 
         modelBuilder.Entity<Type>(entity =>
