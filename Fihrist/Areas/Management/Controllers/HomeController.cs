@@ -1,10 +1,12 @@
 ﻿using Fihrist.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Fihrist.Areas.Management.Controllers
 {
     [Area("Management")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly Fihrist2Context context;
@@ -49,6 +51,11 @@ namespace Fihrist.Areas.Management.Controllers
                 return View(formData);
             }
 
+        }
+
+        [AllowAnonymous]
+        public IActionResult SerbestAction() {
+            return View();
         }
 
 
