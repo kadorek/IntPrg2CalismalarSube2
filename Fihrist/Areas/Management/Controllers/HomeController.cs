@@ -28,8 +28,27 @@ namespace Fihrist.Areas.Management.Controllers
             ViewBag.ListMember=selectListMember; //viewbag aracıyla memeber listesi view e gönderildi
             ViewBag.ListRoles=selectListRoles; //viewbag aracıyla role listesi view e gönderildi
 
-
             return View();        
+        }
+
+        [HttpPost]
+        public IActionResult AssignRoleToUser(RolMember formData) {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Model hatalı geldi");
+                }
+
+                context.RolMembers.Add(formData);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home", new { area=""});
+            }
+            catch (Exception ex)
+            {
+                return View(formData);
+            }
+
         }
 
 
